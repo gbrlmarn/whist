@@ -5,6 +5,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"regexp"
 	"sort"
 	"strings"
 
@@ -53,7 +54,11 @@ loopDom:
 			}
 			txt := strings.TrimSpace(html.UnescapeString(string(z.Text())))
 			wrds := strings.Split(txt, " ")
+			reg := regexp.MustCompile(`[^a-zA-Z]+`)
 			for _, w := range wrds {
+				if reg.MatchString(w) || w == "" {
+					continue
+				}
 				whist[w] += 1
 			}
 		}
