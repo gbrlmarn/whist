@@ -59,6 +59,7 @@ loopDom:
 				if reg.MatchString(w) || w == "" {
 					continue
 				}
+				w = strings.ToLower(w)
 				whist[w] += 1
 			}
 		}
